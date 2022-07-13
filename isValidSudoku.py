@@ -1,24 +1,23 @@
 def isValidSudoku(board):
-  def validRow(row):
-    for item in row:
-      if all(map(lambda x: x != item or x == ".", row)):
-        return True
-    return False
+  rows = len(board)
+  col = len(board[0])
+  row_set = [set() for i in range(rows)]
+  col_set = [set() for i in range(col)]
 
-  if any(map(lambda x: not validRow(x), board)):
-    return False
-  
-  def validCol(row, restOfBoard):
-    for i in range(len(row)):
-      num = row[i]
-      for r in restOfBoard:
-        if r[i] == num and r[i] != ".":
-          return False
-    return True
-  
-  if not validCol(board[0], board[1:]):
-    return False
+  square_set = [set() for i in range(rows//3 * col//3)]
+  for i in range(len(board)):
+    for j in range(len(board[0])):
+      if board[i][j] == '.': continue
+      square_col = j // 3
+      square_row = i // 3
+      square_num = square_row * col // 3 + square_col
 
+      if board[i][j] in col_set[j] or board[i][j] in row_set[i] or board[i][j] in square_set[square_num]:
+        return False
+      else:
+        col_set[j].add(board[i][j])
+        row_set[i].add(board[i][j])
+        square_set[square_num].add(board[i][j])
   return True
 
 
