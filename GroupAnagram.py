@@ -34,3 +34,13 @@ def groupAnagrams2(strs):
       
       
     return res.values()
+
+
+def test_func():
+  assert groupAnagrams(["eat","tea","tan","ate","nat","bat"]) == [["bat"],["nat","tan"],["ate","eat","tea"]]
+  assert groupAnagrams([""]) == [[""]]
+  assert groupAnagrams(["a"]) == [["a"]]
+
+if __name__ == "__main__":
+  test_func()
+  print("Everything passed")
