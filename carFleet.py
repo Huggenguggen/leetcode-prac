@@ -10,6 +10,20 @@ def carFleet(target: int, position: List[int], speed: List[int]) -> int:
   
   return len(stack)
 
+def carFleet2(target: int, position: List[int], speed: List[int]) -> int:
+  distSpeed = []
+  stack = []
+
+  for i in range(len(position)):
+    distSpeed.append((position[i], speed[i]))
+  
+  distSpeed = sorted(distSpeed, reverse=True)
+
+  for dist, speed in distSpeed:
+    distance = target - dist
+    if not stack or (distance/speed) > stack[-1]:
+      stack.append(distance/speed)
+  return len(stack)
 
 def test_func():
   assert carFleet(10, [3,5,7], [3,2,1]) == 1
