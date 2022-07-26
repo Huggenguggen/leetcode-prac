@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, List
 from ListNode import ListNode
 
 #Floyd's algo
